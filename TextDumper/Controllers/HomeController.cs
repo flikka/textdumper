@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,13 @@ namespace TextDumper.Controllers
     {
         public ActionResult Index()
         {
+            MySqlConnection conn = new MySqlConnection("server=localhost;userid=textdumper;password=textdumper;database=flikka_org;");
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM textdump");
+            cmd.Connection = conn;
+            MySqlDataReader reader = cmd.ExecuteReader();
+            
+
             return View();
         }
 
